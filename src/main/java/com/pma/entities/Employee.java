@@ -13,8 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -27,16 +25,16 @@ public class Employee {
 	@Column(name="employee_id")
 	private long employeeId;
 	
-	@Size(min=2,max=50)
+	
 	@Column(name="first_name")
 	private String firstName;
 	
-	@Size(min=2,max=50)
+	
 	@Column(name="last_name")
 	private String lastName;
 	
 	
-	@Email
+	
 	@Column(name="email",unique=true)
 	private String email;
 		
