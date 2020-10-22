@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- "header" is the name of the header saved at "layouts.html" -->
+<head th:replace="layouts :: header">
+
+</head>
+<body>
+
+
+<!-- "navbar" is the name of the nav saved at "layouts.html" -->
+<nav th:replace="layouts :: navbar"></nav>
+
+<div class="container">
+	<h4>Employees directory</h4>
+	<hr>
+	
+	<!-- Add new employee button -->
+	<!-- "/employees/new" ==> refers to an endpoint -->
+	<a th:href="@{/employees/new}" class="btn btn-primary btn-sm mb-3">New Employee</a>
+	
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr> <!-- tr==> table raw -->
+				<th>First Name</th><!-- th==> table header -->
+				<th>Last Name</th>
+				<th>Email</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="anEmployee : ${employeesList}">
+				<td th:text="${anEmployee.firstName}"/>  <!-- td==> table data -->
+				<td th:text="${anEmployee.lastName}"/>
+				<td th:text="${anEmployee.email}"/>
+			</tr>
+		</tbody>
+	</table>
+</div>	
+
+</body>
+</html>

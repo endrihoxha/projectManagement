@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- "header" is the name of the header saved at "layouts.html" -->
+<head th:replace="layouts :: header">
+
+</head>
+<body>
+
+
+<!-- "navbar" is the name of the nav saved at "layouts.html" -->
+<nav th:replace="layouts :: navbar"></nav>
+
+<div class="container">
+	<h4>Projects Directory</h4>
+	<hr>
+	
+	<!-- Add new project button -->
+	<!-- "/projects/new" ==> refers to an endpoint -->
+	<a th:href="@{/projects/new}" class="btn btn-primary btn-sm mb-3">New Project</a>
+	
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr> <!-- tr==> table raw -->
+				<th>Project Name</th><!-- th==> table header -->
+				<th>Project Stage</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="aProject : ${projectsList}">
+				<td th:text="${aProject.name}"/>  <!-- td==> table data -->
+				<td th:text="${aProject.stage}"/>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+</body>
+</html>

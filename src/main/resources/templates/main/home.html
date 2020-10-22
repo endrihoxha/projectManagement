@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- "header" is the name of the header saved at "layouts.html" -->
+<head th:replace="layouts :: header">
+
+</head>
+<body>
+	<!-- "navbar" is the name of the nav saved at "layouts.html" -->
+	<nav th:replace="layouts :: navbar"></nav>
+
+	<div class="container">
+		<h3>Main Dashboard</h3>
+		<hr>
+		<h4>Current Projects</h4>
+		<div class="row">
+			<div class="col-md-6">
+				<!-- Bootstrap table formanting-->
+				<table class="table table-bordered table-striped">
+					<thead class="thead-dark">
+						<tr>
+							<!-- tr==> table raw -->
+							<th>Project Name</th>
+							<!-- th==> table header -->
+							<th>Project Stage</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="aProject : ${projectsList}">
+							<td th:text="${aProject.name}" />
+							<!-- td==> table data -->
+							<td th:text="${aProject.stage}" />
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- here we set the chart -->
+			<div class="col-md-5">
+				<canvas id="myPieChart" height="50" width="50"></canvas>
+				
+<!-- 				the way to access javscript object to thymeleaf ===> "[[${jsonStringProjectData}]]" -->
+				<script>
+					var chartData = "[[${potjectStatusCount}]]"
+				</script>
+			</div>
+		</div>
+	</div>
+
+	<hr>
+	<div class="container">
+		<h4>Current Employees</h4>
+		<div class="row">
+			<div class="col-md-6">
+				<table class="table table-bordered table-striped">
+					<thead class="thead-dark">
+						<tr>
+							<!-- tr==> table raw -->
+							<th>First Name</th>
+							<!-- th==> table header -->
+							<th>Last Name</th>
+							<!-- 					<th>Email</th> -->
+							<th>Email</th>
+							<th>Number Of Projects</th>
+						</tr>
+					</thead>
+					<!-- 			<tbody> -->
+					<!-- 				<tr th:each="anEmployee : ${employeesList}"> -->
+					<!-- 					<td th:text="${anEmployee.firstName}" /> -->
+					<!-- 					td==> table data -->
+					<!-- 					<td th:text="${anEmployee.lastName}" /> -->
+					<!-- 					<td th:text="${anEmployee.email}" /> -->
+					<!-- 				</tr> -->
+					<!-- 			</tbody> -->
+					<tbody>
+						<tr th:each="anEmployeeCount : ${employeeListProjectCount}">
+							<td th:text="${anEmployeeCount.firstName}" />
+							<!-- getFirstName	==> EmployeeProject -->
+							<!-- td==> table data -->
+							<td th:text="${anEmployeeCount.lastName}" />
+							<!-- getLastName   	==> EmployeeProject -->
+							<td th:text="${anEmployeeCount.email}" />
+							<!-- getemail   	==> EmployeeProject -->
+							<td th:text="${anEmployeeCount.ProjectCount}" />
+							<!-- getProjectCount	==> EmployeeProject -->
+						</tr>
+					</tbody>
+
+				</table>
+			</div>
+
+		</div>
+	</div>
+
+
+
+	<!-- import the JS file -->
+	<script type="text/javascript" th:src="@{js/myChart.js}"></script>
+</body>
+</html>
