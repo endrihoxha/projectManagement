@@ -1,6 +1,7 @@
 package com.pma.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,11 +21,13 @@ public class HomeController {
 	@Autowired
 	HomeService homeService;
 	
-	
+	@Value("${version}")
+	private String ver;
 	
 	@GetMapping("/")
 	public String displayHome(Model model) throws JsonProcessingException {
 
+		model.addAttribute("versionNumber",ver);
 		return homeService.displayHomeService(model);
 	}
 }

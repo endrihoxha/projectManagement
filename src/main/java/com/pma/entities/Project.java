@@ -48,8 +48,7 @@ public class Project {
 		
 	}
 
-	public Project(long projectId, String name, String stage, String description) {
-		this.projectId = projectId;
+	public Project( String name, String stage, String description) {
 		this.name = name;
 		this.stage = stage;
 		this.description = description;
